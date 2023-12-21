@@ -1,0 +1,81 @@
+﻿@model CalendarEvents.Models.CalendarEvent
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="alert alert-primary" role="alert">
+   <center><h2>Crear nuevo evento</h2></center> 
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Calendario" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NameLawyer">Nombre Cancha</label>
+                        <select asp-for="NameLawyer"
+                            asp-items="@(new SelectList(new List<string> { "Cancha Quito Norte", "La Carolina", "Cancha Max Quito", "Estadio Olimpico" }))"
+                            class="form-control">
+                            <option value="">Seleccione una cancha</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label">Nombre</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Start" class="control-label">Fecha de Inicio</label>
+                        <input asp-for="Start" class="form-control" type="datetime-local" value="@ViewBag.EventDate" />
+                        <span asp-validation-for="Start" class="text-danger"></span>
+                    </div>
+                </div>
+              <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <label asp-for="End" class="control-label">Fecha de Fin</label>
+                        <input asp-for="End" class="form-control" type="datetime-local" />
+                        <span asp-validation-for="End" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Descripcion</label>
+                        <textarea asp-for="Description" type="text" class="form-control" rows="3" id="MessageInputField"
+                            autofocus></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+             <div class="col-md-6 mb-3">
+                    <div class="form-group align-middle">
+                        <input class="form-check-input" asp-for="AllDay" />
+                        <label class="form-check-label" asp-for="AllDay">Todo el día</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group align-middle">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+
+<div>
+    <a asp-action="Display" class="btn btn-info">Volver al calendario</a>
+</div>

@@ -1,0 +1,66 @@
+﻿@model CalendarEvents.Models.CalendarEvent
+
+<div class="alert alert-primary" role="alert">
+ <center><h2>Editar Evento @ViewBag.Message</h2></center>   
+</div>
+
+<form asp-action="Edit" asp-controller="Calendario" method="post">
+    <input type="hidden" asp-for="LawyerId" />
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="NameLawyer">Nombre Cancha</label>
+        <select asp-for="NameLawyer"
+            asp-items="@(new SelectList(new List<string> { "Cancha Quito Norte", "La Carolina", "Cancha Max Quito", "Estadio Olimpico" }))"
+            class="form-control">
+            <option value="">Seleccione una cancha</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Title">Nombre</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Start">Fecha de Inicio</label>
+        <input asp-for="Start" class="form-control" type="datetime-local" />
+        <span asp-validation-for="Start" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="End">Fecha de Fin</label>
+        <input asp-for="End" class="form-control" type="datetime-local" />
+        <span asp-validation-for="End" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Descripcion</label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Color"></label>
+        <select asp-for="Color"
+            asp-items="@(new SelectList(new List<string> { "orange", "green", "red", "yellow", "pink", "purple", "blue", "black" }))"
+            class="form-control">
+            <option value="">Seleccione un color</option>
+        </select>
+
+    </div>
+
+    <div class="form-group form-check">
+        <input class="form-check-input" asp-for="AllDay" />
+        <label class="form-check-label" asp-for="AllDay">Todo el día</label>
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>
+
+<br>
+<a asp-action="Display" class="btn btn-info">Volver al calendario</a>

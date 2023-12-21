@@ -1,0 +1,205 @@
+<div class="alert alert-info" role="alert">
+    <h2><strong>Calendario de eventos para agendar canchas de futbol <i class="fa-solid fa-calendar-days"></i></strong>
+    </h2>
+</div>
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="form-modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><span id="eventTitle"></span></h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                        <i class='fa-solid fa-trash-can'></i> Eliminar
+                    </button>
+                    <button id="btnEdit" class="btn btn-info btn-sm pull-right" style="margin-right:5px;">
+                        <i class='fas fa-pencil'></i> Editar
+                    </button>
+                </div><br /><br />
+                <p id="pDetails"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/lib/fullcalendar/packages/core/main.css" rel="stylesheet" />
+<link href="~/lib/fullcalendar/packages/daygrid/main.css" rel="stylesheet" />
+<link href="~/lib/fullcalendar/packages/bootstrap5/main.css" rel="stylesheet" />
+<link href="~/lib/fullcalendar/packages/timegrid/main.css" rel="stylesheet" />
+<link href="~/lib/fullcalendar/packages/list/main.css" rel="stylesheet" />
+
+
+@section Scripts {
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var initialLocaleCode = "es";
+            var calendarEl = document.getElementById("calendar");
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                themeSystem: 'bootstrap5',
+                timeZone: 'local',
+
+                headerToolbar: {
+                    left: "prev, next, today",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek"
+                },
+
+                locale: initialLocaleCode,
+                buttonIcons: true,
+                weekNumbers: false,
+                navLinks: true,
+                editable: true,
+                dayMaxEvents: true,
+
+                eventClick: function (info) {
+                    var eventObj = info.event;
+                    var exteventObj = info.event.extendedProps;
+
+                    console.log(eventObj.title);
+                    $('#form-modal #eventTitle').text(eventObj.title);
+                    var $description = $('<div/ class="alert alert-secondary" role="alert" style="margin-top:3px">');
+                    $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Cancha:</b> ' + exteventObj.nameLawyer));
+                    $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Inicio:</b> ' + eventObj.start));
+                    if (eventObj.end != null) {
+                        $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Fin:</b> ' + eventObj.end));
+                    }
+                    $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Descripcion:</b> ' + exteventObj.description));
+                    $('#form-modal #pDetails').empty().html($description);
+
+                    $('#form-modal').modal('show');
+
+                    $('#btnEdit').click(function () {
+
+                        window.location = '@Url.Action("Edit", "Calendario")' + '?lawyerId=' + exteventObj.lawyerId + '&id=' + eventObj.id + '';
+                    });
+
+                    $('#btnDelete').click(function () {
+
+                        window.location = '@Url.Action("Details", "Calendario")' + '?lawyerId=' + exteventObj.lawyerId + '&id=' + eventObj.id + '';
+                    });
+
+                },
+
+
+                dateClick: function (info, jsEvent, view) {
+                    let m = moment(info.date, calendar);
+                    console.log('clicked on ' + m.format());
+                    var heading = 'Confirmar transacción de evento del calendario';
+                    var question = 'Por favor confirma que deseas crear un evento. ';
+                    var cancelButtonTxt = 'Cancelar';
+                    var okButtonTxt = 'Confirmar';
+                    var callback = function () {
+                        window.location = '@Url.Action("Create", "Calendario")' + '?eventDate=' + m.format();
+                    };
+
+                    if (info.view.type != 'month') {
+                        if (info.date > moment()) {
+                            if (confirm(heading, question, cancelButtonTxt, okButtonTxt, callback)) {
+                                callback();
+                            }
+                        }
+                    }
+                    else {
+                        $('#calendar').fullCalendar('changeView', 'agendaDay');
+                        $('#calendar').fullCalendar('gotoDate', date);
+                    }
+                },
+
+                eventRender: function (info) {
+                    var color;
+                    var vcolor = info.event.color;
+
+                    console.log(info.event.color);
+
+                    switch (vcolor) {
+                        case 1:
+                            color = "orange"
+                            break;
+                        case 2:
+                            color = "green"
+                            break;
+                        case 3:
+                            color = "red"
+                            break;
+                        case 4:
+                            color = "darkcyan"
+                            break;
+                        default:
+                    }
+                    return color;
+                },
+
+
+                events: {
+                    url: '@Url.Action("GetEvents", "Calendario")',
+                    method: 'POST',
+                    extendedProps: {
+                        url: 'info.event.extendedProps.description',
+                        nameLawyer: 'info.event.extendedProps.nameLawyer',
+                        id: 'info.event.extendedProps.Id',
+                        lawyerId: 'info.event.extendedProps.lawyerId',
+                    },
+
+                    failure: function () {
+                        alert('¡Hubo un error al buscar eventos!');
+                    },
+                    color: 'black',
+                    textColor: 'white'
+                }
+
+            });
+
+            calendar.render();
+        });
+
+
+        /* Funcion confirmacion modal*/
+        function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
+
+            var confirmModal =
+                $('<div class="modal fade">' +
+                    '<div class="modal-dialog">' +
+                    '<div class="modal-content">' +
+                    '<div class="modal-header">' +
+                    '<h5 class="modal-title" >' + heading + '</h5>' +
+                   // '<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>' +
+                    '</div>' +
+
+                    '<div class="modal-body">' +
+                    '<p class="alert alert-primary" role="alert">' + question + '</p>' +
+              '<img src="/images/futbol.jpg" alt="Descripción de la imagen" style="width: 100%; height: auto;">' +
+                    '</div>' +
+                    '<div class="modal-footer justify-content-center">' +
+                    '<button type="button" class="btn btn-secondary" aria-hidden="true" data-dismiss="modal">' + cancelButtonTxt + '</button>' +
+                    '<button type ="button" data-dismiss="modal" id="okButton" aria-hidden="true" class="btn btn-primary">' +
+                    okButtonTxt +
+                    '</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>');
+
+            confirmModal.find('#okButton').click(function (event) {
+                callback();
+                confirmModal.modal('hide');
+            });
+            confirmModal.modal('show');
+        };
+
+    </script>
+}

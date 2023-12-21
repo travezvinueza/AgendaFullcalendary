@@ -1,0 +1,89 @@
+@model Agenda.Models.Dto.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+
+    <style type="text/css">
+        form {
+            border: 3px solid #f1f1f1;
+            width: 70%;
+            margin: auto;
+            margin-top: 15%;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #2e3ed1;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .msg {
+            padding: 0px;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+
+ 
+</head>
+<body>
+	
+<form asp-action="Login" method="post">
+  
+  <div class="container">
+    <h3>Inicio de Sesion</h3>
+    <br>
+    <label asp-for="Username"><b>Usuario</b></label>
+    <input type="text" asp-for="Username" placeholder="Escriba su usuario">
+            <div class="msg">
+            <span class="err" asp-validation-for="Username"></span>
+            </div>
+
+            
+
+    <label asp-for="Password"><b>Password</b></label>
+   <input  type="password" asp-for="Password" placeholder="Escriba su Password">
+            <div class="msg">
+            <span asp-validation-for="Password" class="err"></span>
+            </div>
+
+
+    @if(TempData["msg"]!=null){
+                <div class="msg">@TempData["msg"]</div>
+    }
+
+    <button type="submit">Login</button>
+    <br>
+    <br>
+    <a class="text-alert text-center" href="/UserAuthentication/Registration">No tienes cuenta? Registrate</a>
+  </div>
+</form>
+
+</body>
+</html>
