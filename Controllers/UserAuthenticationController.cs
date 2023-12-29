@@ -11,10 +11,15 @@ namespace Agenda.Controllers
     {
         private readonly IUserAuthenticationService _authService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public UserAuthenticationController(IUserAuthenticationService authService, UserManager<ApplicationUser> userManager)
+        private readonly IFileService _fileService;
+        public UserAuthenticationController(
+               IUserAuthenticationService authService,
+               UserManager<ApplicationUser> userManager,
+               IFileService fileService)
         {
             this._authService = authService;
             this._userManager = userManager;
+            this._fileService = fileService;
         }
 
 
@@ -68,24 +73,35 @@ namespace Agenda.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registration(RegistrationModel model)
+        public async Task<IActionResult> Registration(RegistrationModel model, IFormFile imageFile)
         {
-            if (!ModelState.IsValid) { return View(model); }
-
-            model.Role = "user";
-            var result = await this._authService.RegisterAsync(model);
-            TempData["msg"] = result.Message;
-
-            if (result.StatusCode == 1)
+            if (!ModelState.IsValid)
             {
-                // Registro exitoso, redirige a la página de inicio de sesión
-                return RedirectToAction(nameof(Login));
+                return View(model);
+            }
+            // llamo al servicio de archivos para guardar la imagen
+            var imageResult = _fileService.SaveImage(imageFile);
+
+            if (imageResult.Item1 == 1) // 1 indica que la carga de la imagen fue exitosa
+            {
+                // Asignar la ruta o nombre de archivo de la imagen de perfil al modelo
+                model.ProfilePicture = imageResult.Item2;
+
+                model.Role = "user";
+                var result = await _authService.RegisterAsync(model);
+
+                TempData["msg"] = result.Message;
+
+                if (result.StatusCode == 1)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
             }
             else
             {
-                // Algo salió mal en el registro, permanece en la página de registro
-                return RedirectToAction(nameof(Registration));
+                TempData["msg"] = imageResult.Item2; // Mensaje de error de carga de imagen
             }
+            return RedirectToAction(nameof(Registration));
         }
 
 

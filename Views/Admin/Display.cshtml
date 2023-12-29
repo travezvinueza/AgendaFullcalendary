@@ -2,41 +2,59 @@
     string username = User.Identity.Name;
 }
 
+@using CalendarEvents.Models
+
+
 <div class="dashboard-container">
-    <div class="header">
-        <center>
-            <h2>Bienvenido, @username</h2>
-        </center>
+    <div class="header text-center">
+        <h2>Bienvenido Administrador @username</h2>
     </div>
 
-
-<div>
-   Esta pagina solo puedes ver el administrador,
-   <br>
-   aun falta terminar 
-</div>
-
-<div class="container">
-          <h3 class="text-center">Lista de Eventos</h3>
+    <div class="container">
+        <h3 class="text-center">Lista de Eventos</h3>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Título</th>
-                        <th>Descripción</th>
-                        <th>Inicio</th>
-                        <th>Fin</th>
-                        <th>Color</th>
-                        <th>Todo el día</th>
-                        <th>Creado</th>
-                        <th>Modificado</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                  
-                </tbody>
-            </table>
+            @if (Model != null && Model.Count > 0)
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titulo</th>
+                            <th>Descripcion</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                            <th>Color</th>
+                            <th>Todo el día</th>
+                            <th>Nombre</th>
+                            <th>Fecha de Creación</th>
+                            <th>Fecha de Modificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var eventItem in Model)
+                        {
+                            <tr>
+                                <td>@eventItem.Id</td>
+                                <td>@eventItem.Title</td>
+                                <td>@eventItem.Description</td>
+                                <td>@eventItem.Start</td>
+                                <td>@eventItem.End</td>
+                                <td>@eventItem.Color</td>
+                                <td>@eventItem.AllDay</td>
+                                <td>@eventItem.NameLawyer</td>
+                                <td>@eventItem.DateCreated</td>
+                                <td>@eventItem.DateModified</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-center">No hay eventos disponibles.</p>
+            }
         </div>
     </div>
+</div>
+<pre>@Model</pre>
+

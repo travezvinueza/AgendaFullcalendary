@@ -74,3 +74,4 @@ C:\PROYECTOS\DOTNET\Agenda\obj\Release\net7.0\refint\Agenda.dll
 C:\PROYECTOS\DOTNET\Agenda\obj\Release\net7.0\Agenda.pdb
 C:\PROYECTOS\DOTNET\Agenda\obj\Release\net7.0\Agenda.genruntimeconfig.cache
 C:\PROYECTOS\DOTNET\Agenda\obj\Release\net7.0\ref\Agenda.dll
+C:\PROYECTOS\DOTNET\Agenda\obj\Release\net7.0\Agenda.sourcelink.json

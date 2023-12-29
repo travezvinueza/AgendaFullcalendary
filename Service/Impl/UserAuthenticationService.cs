@@ -32,6 +32,7 @@ namespace Agenda.Service.Impl
                 status.Message = "El usuario ya existe";
                 return status;
             }
+
             ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,
@@ -42,6 +43,7 @@ namespace Agenda.Service.Impl
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
             };
+
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
@@ -50,9 +52,14 @@ namespace Agenda.Service.Impl
                 return status;
             }
 
+            // Asociar información adicional al usuario
+            user.ProfilePicture = model.ProfilePicture;
+
+            // Guardar datos del usuario (incluyendo la imagen) en la base de datos
+            await userManager.UpdateAsync(user);
+
             if (!await roleManager.RoleExistsAsync(model.Role))
                 await roleManager.CreateAsync(new IdentityRole(model.Role));
-
 
             if (await roleManager.RoleExistsAsync(model.Role))
             {
@@ -63,6 +70,7 @@ namespace Agenda.Service.Impl
             status.Message = "Te has registrado exitosamente";
             return status;
         }
+
 
         public async Task<IList<string>> GetRolesAsync(string userId)
         {
@@ -154,33 +162,6 @@ namespace Agenda.Service.Impl
             }
             return status;
 
-        }
-
-
-
-        public Task<List<ApplicationUser>> GetAllUsersAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ApplicationUser> GetUserByIdAsync(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Status> CreateUserAsync(RegistrationModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Status> UpdateUserAsync(string userId, RegistrationModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Status> DeleteUserAsync(string userId)
-        {
-            throw new NotImplementedException();
         }
 
     }

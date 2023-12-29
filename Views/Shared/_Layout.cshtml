@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agenda</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -46,7 +45,13 @@
                                 style="color: rgb(11, 216, 165);">Cerrar Sesión</a></li>
                     }
                 </ul>
-
+                <!-- esto es para ucultar el login y el registrarse -->
+                <div class="ml-auto" style="margin-left: auto !important;">
+                    @if (string.IsNullOrEmpty(User.Identity.Name))
+                    {
+                        <partial name="_LoginPartial" />
+                    }
+                </div>
             </div>
         </div>
     </nav>

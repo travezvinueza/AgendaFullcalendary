@@ -1,0 +1,18 @@
+.content {
+   padding: 20px; /* Ajusta el espacio interno del contenedor */
+   border-radius: 10px; /* Esquinas redondeadas */
+  
+}
+
+.content h1 {
+   color: #f5f7fa; /* Color del texto */
+
+}
+
+.content p {
+   color: #f7f5f3; /* Color del texto */
+   font-size: 1.2rem; /* Tamaño de la fuente */
+}
+
+
+

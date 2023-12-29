@@ -1,0 +1,38 @@
+﻿@using Agenda.Models.Domain
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+    
+
+@{
+    string FirstName = User.Identity?.Name;
+    bool isAuthenticated = SignInManager.IsSignedIn(User);
+}
+
+<ul class="navbar-nav">
+    @if (isAuthenticated)
+    {
+        <li class="nav-item">
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="nav-link text-dark"  asp-page="/Admin/Display" title="User Admin">Hola @FirstName</a>
+            }
+            else
+            {
+                <a class="nav-link text-dark"  asp-page="/Dashboard/Display" title="User Dashboard">Hola @FirstName</a>
+            }
+        </li>
+        <li>
+            <p>Nombre de usuario: @FirstName</p>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="UserAuthentication" asp-action="Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="UserAuthentication" asp-action="Registration">Registrarse</a>
+        </li>
+    }
+</ul>

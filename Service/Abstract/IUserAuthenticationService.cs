@@ -15,10 +15,6 @@ namespace Agenda.Service.Abstract
         Task<Status> ChangePasswordAsync(ChangePassword model, string username);
 
 
-        Task<List<ApplicationUser>> GetAllUsersAsync();
-        Task<ApplicationUser> GetUserByIdAsync(string userId);
-        Task<Status> CreateUserAsync(RegistrationModel model);
-        Task<Status> UpdateUserAsync(string userId, RegistrationModel model);
-        Task<Status> DeleteUserAsync(string userId);
+       
     }
 }

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Images\\futbol.jpg"
     },
     {
+      "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Images\\hola.jpg",
+      "PackagePath": "staticwebassets\\Images\\hola.jpg"
+    },
+    {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Images\\pelota.jpg",
       "PackagePath": "staticwebassets\\Images\\pelota.jpg"
     },
@@ -21,8 +25,16 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
     },
     {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\site.js",

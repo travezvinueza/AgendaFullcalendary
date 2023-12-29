@@ -1,13 +1,16 @@
-﻿@{
-    string username = User.Identity.Name;
-}
+﻿@model Agenda.ViewModels.DashboardViewModel
 
 <div class="dashboard-container">
     <div class="header">
         <center>
-            <h2>Bienvenido, @username</h2>
+            <h2>Bienvenido, @Model.UserName</h2>
+            <img src="~/Uploads/@Model.ProfilePicture" width="80px" height="80px" style="border-radius: 50%;" alt="Profile Picture">
         </center>
     </div>
+    <!-- Otro contenido del dashboard -->
+</div>
+<br>
+<br>
 
     <div id="carrusel-contenido">
         <div id="carrusel-caja">

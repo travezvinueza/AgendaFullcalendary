@@ -1,8 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="es">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <!-- bootstrap cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body
+   style="background-image: url(../Images/hola.jpg); background-size: cover !important; background-position: center; margin: 0; padding: 0; overflow-x: hidden;">
+
+   <section class="home" id="home">
+      <div class="container-fluid">
+         <div class="row min-vh-100 align-items-center">
+            <div class="content text-center text-md-left">
+               <h1>Un lugar perfecto </h1>
+               <p>Bienvenido a nuestro servicio de reserva de canchas de fútbol. Vive la emoción del juego, organiza
+                  partidos con amigos o compite en ligas locales. Nuestras canchas están disponibles para satisfacer
+                  todas tus necesidades futbolísticas.</p> <br>
+                  <a href="/UserAuthentication/Registration"
+                  class="btn btn-primary">Crear Evento</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script src="js/script.js"></script>
+
+</body>
+
+</html>
