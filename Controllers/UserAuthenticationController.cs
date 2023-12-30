@@ -4,7 +4,6 @@ using Agenda.Service.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 namespace Agenda.Controllers
 {
     public class UserAuthenticationController : Controller
@@ -41,10 +40,10 @@ namespace Agenda.Controllers
                 // Si el inicio de sesión es exitoso
                 var user = await _userManager.FindByNameAsync(model.Username);
 
-                var isAdmin = await _userManager.IsInRoleAsync(user, "admin");
+                var isAdmin = await _userManager.IsInRoleAsync(user!, "admin");
                 Console.WriteLine($"Usuario es admin: {isAdmin}");
 
-                Console.WriteLine($"Roles del usuario: {string.Join(", ", await _userManager.GetRolesAsync(user))}");
+                Console.WriteLine($"Roles del usuario: {string.Join(", ", await _userManager.GetRolesAsync(user!))}");
 
                 if (isAdmin)
                 {

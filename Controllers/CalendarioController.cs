@@ -132,7 +132,5 @@ namespace Agenda.Controllers
 
             return View(calendarEvent);
         }
-        
-
     }
 }

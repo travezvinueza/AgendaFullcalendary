@@ -1,8 +1,8 @@
 @{
     string username = User.Identity.Name;
 }
-
-@using CalendarEvents.Models
+@using Agenda.Models.Dto
+@model List<RegistrationModel>
 
 
 <div class="dashboard-container">
@@ -11,39 +11,31 @@
     </div>
 
     <div class="container">
-        <h3 class="text-center">Lista de Eventos</h3>
+        <h3 class="text-center">Lista de Usuarios</h3>
         <div class="table-responsive">
             @if (Model != null && Model.Count > 0)
             {
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped table-responsive">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Titulo</th>
-                            <th>Descripcion</th>
-                            <th>Inicio</th>
-                            <th>Fin</th>
-                            <th>Color</th>
-                            <th>Todo el día</th>
                             <th>Nombre</th>
-                            <th>Fecha de Creación</th>
-                            <th>Fecha de Modificación</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Usuario</th>
+                            <th>Imagen</th>
+                            <th>Rol</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var eventItem in Model)
+                        @foreach (var user in Model)
                         {
                             <tr>
-                                <td>@eventItem.Id</td>
-                                <td>@eventItem.Title</td>
-                                <td>@eventItem.Description</td>
-                                <td>@eventItem.Start</td>
-                                <td>@eventItem.End</td>
-                                <td>@eventItem.Color</td>
-                                <td>@eventItem.AllDay</td>
-                                <td>@eventItem.NameLawyer</td>
-                                <td>@eventItem.DateCreated</td>
-                                <td>@eventItem.DateModified</td>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Username</td>
+                                <td><img src="~/Uploads/@user.ProfilePicture" style="width: 100px; height: 100px;" alt="Profile Picture"></td>
+                                <td>@user.Role</td>
                             </tr>
                         }
                     </tbody>
@@ -51,10 +43,9 @@
             }
             else
             {
-                <p class="text-center">No hay eventos disponibles.</p>
+                <p class="text-center">No hay usuarios disponibles.</p>
             }
         </div>
     </div>
 </div>
-<pre>@Model</pre>
 

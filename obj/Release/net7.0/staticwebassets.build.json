@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hRbLeEN0Y9sdKL/ZTP009psE1t0ikXCVOW3pn+gIlRA=",
+  "Hash": "mao8sVKqQ66zykUHj7LJp/kKMtjlcKzGXsZqDjVLaCo=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -11721,12 +11721,12 @@
       "OriginalItemSpec": "wwwroot\\superagent\\superagent.min.js.map"
     },
     {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\1ae58f47-9544-40db-accc-2a413769defb.png",
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg",
       "SourceId": "Agenda",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
       "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/1ae58f47-9544-40db-accc-2a413769defb.png",
+      "RelativePath": "Uploads/39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11737,15 +11737,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\1ae58f47-9544-40db-accc-2a413769defb.png"
+      "OriginalItemSpec": "wwwroot\\Uploads\\39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg"
     },
     {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\8ef3519f-3e74-4db3-aa38-5d53474796c1.jpg",
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png",
       "SourceId": "Agenda",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
       "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/8ef3519f-3e74-4db3-aa38-5d53474796c1.jpg",
+      "RelativePath": "Uploads/5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11756,7 +11756,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\8ef3519f-3e74-4db3-aa38-5d53474796c1.jpg"
+      "OriginalItemSpec": "wwwroot\\Uploads\\5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png"
     },
     {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg",
@@ -11778,12 +11778,12 @@
       "OriginalItemSpec": "wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg"
     },
     {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\c561e088-5e0c-45ad-8d78-d55993a947da.png",
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg",
       "SourceId": "Agenda",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
       "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/c561e088-5e0c-45ad-8d78-d55993a947da.png",
+      "RelativePath": "Uploads/d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11794,26 +11794,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\c561e088-5e0c-45ad-8d78-d55993a947da.png"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\cd5f0012-4bc2-4b78-995e-7cbbdd867136.jpg",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/cd5f0012-4bc2-4b78-995e-7cbbdd867136.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\cd5f0012-4bc2-4b78-995e-7cbbdd867136.jpg"
+      "OriginalItemSpec": "wwwroot\\Uploads\\d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg"
     }
   ]
 }
