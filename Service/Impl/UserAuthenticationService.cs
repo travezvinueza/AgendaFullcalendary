@@ -1,10 +1,9 @@
-﻿using Agenda.Models;
-using Agenda.Models.Domain;
+﻿using Agenda.Models.Domain;
 using Agenda.Models.Dto;
 using Agenda.Service.Abstract;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
-using System.Text;
+
 
 namespace Agenda.Service.Impl
 {
@@ -22,7 +21,6 @@ namespace Agenda.Service.Impl
 
         }
 
-    
         //este metodo es para que me traiga la lista de los usuarios
         public List<RegistrationModel> GetAll()
         {
@@ -40,7 +38,7 @@ namespace Agenda.Service.Impl
             return registrationModels;
         }
 
-         public async Task<Status> RegisterAsync(RegistrationModel model)
+        public async Task<Status> RegisterAsync(RegistrationModel model)
         {
             var status = new Status();
             var userExists = await userManager.FindByNameAsync(model.Username);

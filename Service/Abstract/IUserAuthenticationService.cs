@@ -1,5 +1,4 @@
-﻿using Agenda.Models.Domain;
-using Agenda.Models.Dto;
+﻿using Agenda.Models.Dto;
 
 
 namespace Agenda.Service.Abstract

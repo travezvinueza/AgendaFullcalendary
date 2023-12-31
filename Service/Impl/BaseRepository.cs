@@ -20,7 +20,7 @@ namespace Agenda.Service.Impl
                 ctx.SaveChanges();
                 return true;
             }
-            catch(Exception )
+            catch (Exception)
             {
                 return false;
             }
@@ -34,7 +34,7 @@ namespace Agenda.Service.Impl
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }
@@ -47,14 +47,14 @@ namespace Agenda.Service.Impl
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }
         }
         public T? FindById(int id)
         {
-           return ctx.Set<T>().Find(id);
+            return ctx.Set<T>().Find(id);
         }
 
         public IQueryable<T> GetAll()
@@ -68,7 +68,6 @@ namespace Agenda.Service.Impl
 
         }
 
-       
     }
 
 }
