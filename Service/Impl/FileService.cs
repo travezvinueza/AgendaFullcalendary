@@ -11,6 +11,7 @@ namespace Agenda.Service.Impl
             environment = env;
         }
 
+
         public Tuple<int, string> SaveImage(IFormFile imageFile)
         {
             try
@@ -39,7 +40,7 @@ namespace Agenda.Service.Impl
                 return new Tuple<int, string>(1, newFileName);
                 ;
             }
-            catch (Exception)
+            catch (Exception )
             {
                 return new Tuple<int, string>(0, "Error has occured");
             }
@@ -58,7 +59,7 @@ namespace Agenda.Service.Impl
                 }
                 return false;
             }
-            catch (Exception)
+            catch (Exception )
             {
                 return false;
             }

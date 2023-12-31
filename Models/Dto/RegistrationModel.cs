@@ -5,7 +5,6 @@ namespace Agenda.Models.Dto
     public class RegistrationModel
     {
         [Required]
-        public string  Id { get; set; } = string.Empty; //aumente este id 
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }

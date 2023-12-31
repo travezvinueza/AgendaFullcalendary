@@ -40,7 +40,7 @@ namespace Agenda.Service.Impl
             return registrationModels;
         }
 
-        public async Task<Status> RegisterAsync(RegistrationModel model)
+         public async Task<Status> RegisterAsync(RegistrationModel model)
         {
             var status = new Status();
             var userExists = await userManager.FindByNameAsync(model.Username);
@@ -69,6 +69,7 @@ namespace Agenda.Service.Impl
                 status.Message = "Error al crear el usuario";
                 return status;
             }
+
             // Asociar información adicional al usuario
             user.ProfilePicture = model.ProfilePicture;
 
