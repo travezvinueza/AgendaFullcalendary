@@ -1,4 +1,4 @@
-[!NOTE]
+> [!NOTE]
 INTRODUCCIÓN
 
 Esta aplicación se desarrolló utilizando ASP.NET Core, haciendo uso del paquete Microsoft.AspNetCore.Identity. Este paquete es comúnmente empleado para implementar la autenticación de usuarios y la gestión de roles en aplicaciones web.
