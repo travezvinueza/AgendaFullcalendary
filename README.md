@@ -1,9 +1,7 @@
 > [!NOTE]
 > INTRODUCCIÓN
 Esta aplicación se desarrolló utilizando ASP.NET Core, haciendo uso del paquete Microsoft.AspNetCore.Identity. Este paquete es comúnmente empleado para implementar la autenticación de usuarios y la gestión de roles en aplicaciones web.
-
 Al integrar la autenticación e Identity en tu aplicación, se generan automáticamente diversas tablas en la base de datos para almacenar información relacionada con usuarios y roles. Estas tablas abarcan aspectos como usuarios, roles, claims, logins externos, entre otros. Dichas estructuras son esenciales para gestionar la autenticación y autorización de usuarios en la aplicación.
-
 Si bien es posible eliminar las tablas no utilizadas, no se recomienda hacerlo, ya que va en contra de las buenas prácticas de desarrollo.
 
 ALGUNOS COMANDOS UTILIZADOS DURANTE EL DESARROLLO DEL PROYECTO
