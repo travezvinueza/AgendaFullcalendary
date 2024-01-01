@@ -5,7 +5,8 @@
 > autorización de usuarios en la aplicación.
 > Si bien es posible eliminar las tablas no utilizadas, no se recomienda hacerlo, ya que va en contra de las buenas prácticas de desarrollo.
 
-ALGUNOS COMANDOS UTILIZADOS DURANTE EL DESARROLLO DEL PROYECTO
+> [!TIP]
+> ALGUNOS COMANDOS UTILIZADOS DURANTE EL DESARROLLO DEL PROYECTO
 
 dotnet restore: Verifica posibles errores en el proyecto.
 
