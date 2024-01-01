@@ -18,8 +18,8 @@ dotnet ef database update: Actualiza la base de datos en caso de cambios en el c
 dotnet publish -c Release: Publica el proyecto, listo para ser desplegado en un hosting.
 
 URLS RELEVANTES
-
-Registro de usuarios administradores: http://localhost:5133/UserAuthentication/RegisterAdmin
+> [!IMPORTANT]
+Con esta URL es para registrar usuarios admin: http://localhost:5133/UserAuthentication/RegisterAdmin
 
 Hosting utilizado para desplegar el proyecto: FreeASPHosting.net
 
