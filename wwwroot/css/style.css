@@ -1,18 +1,39 @@
-.content {
-   padding: 20px; /* Ajusta el espacio interno del contenedor */
-   border-radius: 10px; /* Esquinas redondeadas */
-  
+body {
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+   background-image: url(/Images/hola.jpg);
+   background-size: cover;
+   background-position: center;
 }
 
-.content h1 {
-   color: #f5f7fa; /* Color del texto */
-
+.home {
+   padding: 50px;
 }
 
-.content p {
-   color: #f7f5f3; /* Color del texto */
-   font-size: 1.2rem; /* Tamaño de la fuente */
+h1 {
+   font-size: 2.5em;
+   color: #fff;
 }
 
+p {
+   font-size: 1.2em;
+   color: #fff;
+}
 
+.btn {
+   font-size: 1.2em;
+}
 
+/* Media queries para hacer la imagen de fondo responsive */
+@media (max-width: 768px) {
+   body {
+      background-size: auto 100%;
+   }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+   body {
+      background-size: cover;
+   }
+}

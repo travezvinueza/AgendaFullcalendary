@@ -177,7 +177,6 @@ namespace Agenda.Service.Impl
                 status.StatusCode = 0;
             }
             return status;
-
         }
     }
 }

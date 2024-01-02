@@ -67,7 +67,5 @@ namespace Agenda.Service.Impl
             return ctx.Set<T>().Where(expression).AsNoTracking();
 
         }
-
     }
-
 }

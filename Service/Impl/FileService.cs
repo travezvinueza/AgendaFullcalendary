@@ -22,7 +22,6 @@ namespace Agenda.Service.Impl
                     Directory.CreateDirectory(path);
                 }
 
-                // Check the allowed extenstions
                 var ext = Path.GetExtension(imageFile.FileName);
                 var allowedExtensions = new string[] { ".jpg", ".png", ".jpeg" };
                 if (!allowedExtensions.Contains(ext))

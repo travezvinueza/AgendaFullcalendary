@@ -4,9 +4,10 @@
 }
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
 
@@ -18,7 +19,8 @@
             margin-top: 15%;
         }
 
-        input[type=text], input[type=password] {
+        input[type=text],
+        input[type=password] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -53,37 +55,35 @@
 </head>
 
 <body>
-	
-<form asp-action="Login" method="post">
-  
-  <div class="container">
-    <h3>Inicio de Sesion</h3>
-    <br>
-    <label asp-for="Username"><b>Usuario</b></label>
-    <input type="text" asp-for="Username" placeholder="Escriba su usuario">
+
+    <form asp-action="Login" method="post">
+
+        <div class="container">
+            <h3>Inicio de Sesion</h3>
+            <br>
+            <label asp-for="Username"><b>Usuario</b></label>
+            <input type="text" asp-for="Username" placeholder="Escriba su usuario">
             <div class="msg">
-            <span class="err" asp-validation-for="Username"></span>
+                <span class="err" asp-validation-for="Username"></span>
             </div>
 
-            
-
-    <label asp-for="Password"><b>Password</b></label>
-   <input  type="password" asp-for="Password" placeholder="Escriba su Password">
+            <label asp-for="Password"><b>Password</b></label>
+            <input type="password" asp-for="Password" placeholder="Escriba su Password">
             <div class="msg">
-            <span asp-validation-for="Password" class="err"></span>
+                <span asp-validation-for="Password" class="err"></span>
             </div>
 
-
-    @if(TempData["msg"]!=null){
+            @if (TempData["msg"] != null)
+            {
                 <div class="msg">@TempData["msg"]</div>
-    }
-
-    <button type="submit">Login</button>
-    <br>
-    <br>
-    <a class="text-alert text-center" href="/UserAuthentication/Registration">No tienes cuenta? Registrate</a>
-  </div>
-</form>
+            }
+            <button type="submit">Login</button>
+            <br>
+            <br>
+            <a class="text-alert text-center" href="/UserAuthentication/Registration">No tienes cuenta? Registrate</a>
+        </div>
+    </form>
 
 </body>
+
 </html>
