@@ -27,7 +27,6 @@ FreeASPHosting.net es un proveedor de servicios de alojamiento web gratuito que 
 en el soporte de aplicaciones y sitios web basados en tecnologías de Microsoft, como ASP.NET. 
 
 > [!WARNING]
-> DEMO
-> https://travez.bsite.net/
-> Usuario: Mateo        
-> Password: Mateo.eras@123*
+ DEMO
+ https://travez.bsite.net/
+ Usuario: Mateo         Password: Mateo.eras@123*
