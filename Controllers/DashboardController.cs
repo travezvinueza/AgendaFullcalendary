@@ -24,6 +24,7 @@ namespace Agenda.Controllers
             var viewModel = new DashboardViewModel
             {
                 UserName = user.UserName,
+                Email = user.Email,
                 ProfilePicture = user.ProfilePicture
             };
 
