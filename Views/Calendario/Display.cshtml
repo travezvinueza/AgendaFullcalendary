@@ -91,9 +91,7 @@
 
                         window.location = '@Url.Action("Details", "Calendario")' + '?lawyerId=' + exteventObj.lawyerId + '&id=' + eventObj.id + '';
                     });
-
                 },
-
 
                 dateClick: function (info, jsEvent, view) {
                     let m = moment(info.date, calendar);
@@ -143,7 +141,6 @@
                     return color;
                 },
 
-
                 events: {
                     url: '@Url.Action("GetEvents", "Calendario")',
                     method: 'POST',
@@ -160,12 +157,9 @@
                     color: 'black',
                     textColor: 'white'
                 }
-
             });
-
             calendar.render();
         });
-
 
         /* Funcion confirmacion modal*/
         function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
@@ -176,7 +170,6 @@
                     '<div class="modal-content">' +
                     '<div class="modal-header">' +
                     '<h5 class="modal-title" >' + heading + '</h5>' +
-                   // '<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>' +
                     '</div>' +
 
                     '<div class="modal-body">' +
@@ -184,7 +177,7 @@
               '<img src="/images/futbol.jpg" alt="Descripción de la imagen" style="width: 100%; height: auto;">' +
                     '</div>' +
                     '<div class="modal-footer justify-content-center">' +
-                    '<button type="button" class="btn btn-secondary" aria-hidden="true" data-dismiss="modal">' + cancelButtonTxt + '</button>' +
+                    //'<button type="button" class="btn btn-secondary" aria-hidden="true" data-dismiss="modal">' + cancelButtonTxt + '</button>' +
                     '<button type ="button" data-dismiss="modal" id="okButton" aria-hidden="true" class="btn btn-primary">' +
                     okButtonTxt +
                     '</button>' +

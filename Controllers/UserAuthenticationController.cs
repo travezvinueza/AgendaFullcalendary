@@ -110,6 +110,9 @@ namespace Agenda.Controllers
             await this._authService.LogoutAsync();
             return RedirectToAction(nameof(Login));
         }
+
+        //este metodo es para registrar un usuario admin con esta url
+        //http://localhost:5133/UserAuthentication/RegisterAdmin
         [AllowAnonymous]
         public async Task<IActionResult> RegisterAdmin()
         {
@@ -127,6 +130,7 @@ namespace Agenda.Controllers
             return Ok(result);
         }
 
+
         [Authorize]
         public IActionResult ChangePassword()
         {
@@ -143,6 +147,5 @@ namespace Agenda.Controllers
             TempData["msg"] = result.Message;
             return RedirectToAction(nameof(ChangePassword));
         }
-
     }
 }

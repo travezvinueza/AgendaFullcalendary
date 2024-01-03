@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Security.Principal;
+﻿using System.Linq.Expressions;
+
 
 namespace Agenda.Service.Abstract
 {

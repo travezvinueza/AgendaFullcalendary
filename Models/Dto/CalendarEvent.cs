@@ -1,5 +1,3 @@
-// using System.ComponentModel.DataAnnotations.Schema;
-// using System.ComponentModel.DataAnnotations;
 namespace CalendarEvents.Models
 {
     public class CalendarEvent

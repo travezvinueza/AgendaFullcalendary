@@ -1,10 +1,9 @@
-﻿using Agenda.Models;
-using Agenda.Models.Domain;
+﻿using Agenda.Models.Domain;
 using Agenda.Models.Dto;
 using Agenda.Service.Abstract;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
-using System.Text;
+
 
 namespace Agenda.Service.Impl
 {
@@ -21,6 +20,7 @@ namespace Agenda.Service.Impl
             this.signInManager = signInManager;
 
         }
+
         //este metodo es para que me traiga la lista de los usuarios
         public List<RegistrationModel> GetAll()
         {
@@ -37,104 +37,6 @@ namespace Agenda.Service.Impl
 
             return registrationModels;
         }
-
-
-        //estos 4 metodos es para haecr el crud del usuario
-        public async Task<Status> UpdateAsync(string userId, RegistrationModel model)
-        {
-            var status = new Status();
-
-            // Obtener el usuario por su Id
-            var user = await userManager.FindByIdAsync(userId);
-
-            if (user == null)
-            {
-                status.StatusCode = 0;
-                status.Message = "Usuario no encontrado";
-                return status;
-            }
-            // Actualizar propiedades del usuario
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.Email = model.Email;
-            user.UserName = model.Username;
-            user.ProfilePicture = model.ProfilePicture;
-
-            // Actualizar el usuario en la base de datos
-            var result = await userManager.UpdateAsync(user);
-
-            if (!result.Succeeded)
-            {
-                status.StatusCode = 0;
-                status.Message = "Error al actualizar el usuario";
-                return status;
-            }
-
-            status.StatusCode = 1;
-            status.Message = "Usuario actualizado exitosamente";
-            return status;
-        }
-
-        public async Task<RegistrationModel> GetById(string id)
-        {
-            var user = userManager.Users.FirstOrDefault(u => u.Id == id);
-
-            if (user != null)
-            {
-                var roles = await userManager.GetRolesAsync(user);
-
-                return new RegistrationModel
-                {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email!,
-                    Username = user.UserName!,
-                    ProfilePicture = user.ProfilePicture,
-                    Role = roles.FirstOrDefault()!
-                };
-            }
-            return null!;
-        }
-
-        public async Task Add(RegistrationModel model)
-        {
-            var user = new ApplicationUser
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                UserName = model.Username,
-                ProfilePicture = model.ProfilePicture
-            };
-
-            var result = await userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
-            {
-                if (!await roleManager.RoleExistsAsync(model.Role))
-                    await roleManager.CreateAsync(new IdentityRole(model.Role));
-
-                if (await roleManager.RoleExistsAsync(model.Role))
-                    await userManager.AddToRoleAsync(user, model.Role);
-            }
-        }
-
-        public async Task Delete(string id)
-        {
-            var user = await userManager.FindByIdAsync(id.ToString());
-
-            if (user != null)
-            {
-                await userManager.DeleteAsync(user);
-            }
-        }
-
-
-
-
-
-
 
         public async Task<Status> RegisterAsync(RegistrationModel model)
         {
@@ -165,6 +67,7 @@ namespace Agenda.Service.Impl
                 status.Message = "Error al crear el usuario";
                 return status;
             }
+
             // Asociar información adicional al usuario
             user.ProfilePicture = model.ProfilePicture;
 
@@ -274,7 +177,6 @@ namespace Agenda.Service.Impl
                 status.StatusCode = 0;
             }
             return status;
-
         }
     }
 }

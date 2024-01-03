@@ -1,45 +1,75 @@
-﻿@model RegistrationModel
-@using Agenda.Models.Dto
+﻿@model Agenda.ViewModels.DashboardViewModel
 
-
-<div class="container">
-    <h2 class="text-center">Actualizar Usuario</h2>
-
-    <form asp-action="Update" asp-controller="Dashboard" method="post">
-        <input type="hidden" asp-for="Id" />
-
-        <div class="form-group">
-            <label asp-for="FirstName" class="control-label"></label>
-            <input asp-for="FirstName" class="form-control" />
-            <span asp-validation-for="FirstName" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="LastName" class="control-label"></label>
-            <input asp-for="LastName" class="form-control" />
-            <span asp-validation-for="LastName" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Email" class="control-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Username" class="control-label"></label>
-            <input asp-for="Username" class="form-control" />
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label>Imagen</label>
-            <input type="file" class="form-control" asp-for="ImageFile" />
-            <span class="text-danger" asp-validation-for="ImageFile"></span>
-        </div>
-        <br>
-        <div class="form-group">
-            <input type="submit" value="Actualizar" class="btn btn-primary" />
-        </div>
-    </form>
+<div class="dashboard-container">
+    <div class="header">
+        <center>
+            <h2>Bienvenido, @Model.UserName</h2>
+            <img src="~/Uploads/@Model.ProfilePicture" width="100px" height="100px" style="border-radius: 50%;" alt="Profile Picture">
+            <h5>@Model.Email</h5>
+        </center>
+    </div>
 </div>
+<br>
+
+    <div id="carrusel-contenido">
+        <div id="carrusel-caja">
+            <div class="carrusel-elemento">
+                <img class="imagenes"
+                    src="https://tribunadeloscabos.s3.us-west-2.amazonaws.com/2022/11/Canchas-de-futbol-en-San-Jose-del-Cabo.jpeg"
+                    alt="Imagen 1">
+            </div>
+            <div class="carrusel-elemento">
+                <img class="imagenes" src="/Images/cancha.jpg" alt="Imagen 2">
+            </div>
+            <div class="carrusel-elemento">
+                <img class="imagenes" src="/Images/pelota.jpg" alt="Imagen 3">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="calendar-button">
+        <a href="@Url.Action("Display", "Calendario")" class="btn btn-primary">Crear Evento</a>
+    </div>
+
+    <style>
+        /* CARRUSEL */
+        #carrusel-contenido {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        #carrusel-caja {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carrusel-elemento {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .imagenes {
+            width: 100%;
+            max-height: 500px;
+            height: auto;
+        }
+    </style>
+
+    @section scripts {
+        <script>
+            // JavaScript para la funcionalidad de auto-reproducción
+            setInterval(function () {
+                let carruselCaja = document.getElementById('carrusel-caja');
+                carruselCaja.style.transition = "transform 0.5s ease-in-out";
+                carruselCaja.style.transform = 'translateX(' + (-carruselCaja.clientWidth) + 'px)';
+                setTimeout(function () {
+                    let primerElemento = carruselCaja.firstElementChild;
+                    carruselCaja.appendChild(primerElemento);
+                    carruselCaja.style.transition = "none";
+                    carruselCaja.style.transform = 'translateX(0)';
+                }, 500);
+            }, 3000); // Cambia la imagen cada 3 segundos (3000 milisegundos)
+        </script>
+        </section>
+}

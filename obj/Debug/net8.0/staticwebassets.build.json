@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jRkRgpk0zCu1P5AnATjMbN42l1GtOQv850mAZ8g/uEQ=",
+  "Hash": "fZYD5eSdNwL/8f0Kp/v3tv1+nc6hexVI2CSFWnRdaZg=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -186,25 +186,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\pelota.jpg"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\script.js",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "js/script.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\script.js"
     },
     {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\site.js",
@@ -11776,6 +11757,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg"
+    },
+    {
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg",
+      "SourceId": "Agenda",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
+      "BasePath": "_content/Agenda",
+      "RelativePath": "Uploads/c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg"
     },
     {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg",
