@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231217163201_Migracion")]
+    [Migration("20240103151321_Migracion")]
     partial class Migracion
     {
         /// <inheritdoc />
@@ -35,6 +35,10 @@ namespace Agenda.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DNI")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -67,6 +71,10 @@ namespace Agenda.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")

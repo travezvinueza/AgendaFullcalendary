@@ -19,6 +19,13 @@ namespace Agenda.Models.Dto
         public IFormFile? ImageFile { get; set; }
 
         [Required]
+        public string DNI { get; set; } 
+
+        [Required]
+        [Phone]
+        public string Phone { get; set; } 
+
+        [Required]
         [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Longitud mínima 6 y debe contener 1 mayúscula, 1 minúscula, 1 carácter especial y 1 dígito.")]
         public string Password { get; set; }
         [Required]
@@ -32,6 +39,8 @@ namespace Agenda.Models.Dto
             LastName = string.Empty;
             Email = string.Empty;
             Username = string.Empty;
+            DNI = string.Empty;
+            Phone = string.Empty;
             Password = string.Empty;
             PasswordConfirm = string.Empty;
             Role = string.Empty;

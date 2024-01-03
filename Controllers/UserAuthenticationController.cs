@@ -120,8 +120,10 @@ namespace Agenda.Controllers
             {
                 Username = "Mateo",
                 Email = "mateo@gmail.com",
+                Phone = "0983824865",
                 FirstName = "Mateo",
                 LastName = "Eras",
+                DNI = "17563423456",
                 Password = "Mateo.eras@123"
             };
             model.Role = "admin";

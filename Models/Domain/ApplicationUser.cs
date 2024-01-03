@@ -4,15 +4,11 @@ namespace Agenda.Models.Domain
 {
     public class ApplicationUser : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
         public string? ProfilePicture { get; set; }
-
-        public ApplicationUser()
-        {
-            FirstName = string.Empty;
-            LastName = string.Empty;
-        }
+        public string DNI { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
 
     }
 }

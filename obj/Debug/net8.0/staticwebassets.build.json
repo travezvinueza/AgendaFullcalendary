@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fZYD5eSdNwL/8f0Kp/v3tv1+nc6hexVI2CSFWnRdaZg=",
+  "Hash": "P/VUjbjIVdnHMWl0axX6PifdkgbdwB15rKgUGCf/HeI=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -11721,25 +11721,6 @@
       "OriginalItemSpec": "wwwroot\\Uploads\\39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg"
     },
     {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\5e4eb232-1ca4-45c6-81e7-cc66ba796a43.png"
-    },
-    {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg",
       "SourceId": "Agenda",
       "SourceType": "Discovered",
@@ -11757,44 +11738,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\c39b45de-cd65-4803-a1a6-cf32160c31cf.jpg"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\d583e86d-426c-4c80-93b7-9f1b3d531a6e.jpg"
     }
   ]
 }

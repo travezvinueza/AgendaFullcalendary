@@ -32,6 +32,8 @@ namespace Agenda.Service.Impl
                 Email = user.Email!,
                 Username = user.UserName!,
                 ProfilePicture = user.ProfilePicture,
+                DNI = user.DNI,
+                Phone = user.Phone,
                 Role = userManager.GetRolesAsync(user).Result.FirstOrDefault()!
             }).ToList();
 
@@ -58,6 +60,8 @@ namespace Agenda.Service.Impl
                 LastName = model.LastName,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
+                DNI = model.DNI,        
+                Phone = model.Phone     
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
