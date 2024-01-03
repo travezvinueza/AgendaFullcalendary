@@ -29,4 +29,4 @@ en el soporte de aplicaciones y sitios web basados en tecnologías de Microsoft,
 > [!WARNING]
  DEMO
  https://travez.bsite.net/
- Usuario: Mateo         Password: Mateo.eras@123*
+ Usuario: Mateo         Password: Mateo.eras@123
