@@ -4,9 +4,9 @@ namespace Agenda.Models.Dto
 {
     public class RegistrationModel
     {
-        [Required]
+        
         public string FirstName { get; set; }
-        [Required]
+        
         public string LastName { get; set; }
         [Required]
         [EmailAddress]
@@ -18,11 +18,8 @@ namespace Agenda.Models.Dto
         public string? ProfilePicture { get; set; }
         public IFormFile? ImageFile { get; set; }
 
-        [Required]
         public string DNI { get; set; } 
 
-        [Required]
-        [Phone]
         public string Phone { get; set; } 
 
         [Required]

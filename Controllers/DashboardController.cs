@@ -1,34 +1,54 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Agenda.ViewModels;
 using Agenda.Models.Domain;
+using Agenda.Models.Dto;
+using Agenda.Service.Abstract;
+using System.Security.Claims;
 
 namespace Agenda.Controllers
 {
     [Authorize]
     public class DashboardController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserAuthenticationService _authService;
 
-        public DashboardController(UserManager<ApplicationUser> userManager)
+        public DashboardController(IUserAuthenticationService authService)
         {
-            _userManager = userManager;
+            _authService = authService;
         }
 
-        public IActionResult Display()
+        public async Task<IActionResult> Display()
         {
-            var username = User.Identity.Name;
-            var user = _userManager.FindByNameAsync(username).Result;
+            // Obtener el ID del usuario actual
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var viewModel = new DashboardViewModel
+            var profileModel = await _authService.GetProfileAsync(userId);
+
+            if (profileModel == null)
             {
-                UserName = user.UserName,
-                Email = user.Email,
-                ProfilePicture = user.ProfilePicture
-            };
+                return View("Error");
+            }
+            return View(profileModel);
+        }
 
-            return View(viewModel);
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(UpdateProfileModel model)
+        {
+            // Obtener el ID del usuario actual 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var status = await _authService.UpdateProfileAsync(userId, model);
+
+            if (status.StatusCode == 1)
+            {
+                return RedirectToAction("Display", "Calendario");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, status.Message);
+                return View(model);
+            }
         }
     }
 }

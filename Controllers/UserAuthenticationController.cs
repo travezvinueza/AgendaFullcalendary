@@ -21,6 +21,46 @@ namespace Agenda.Controllers
             this._fileService = fileService;
         }
 
+        //traigo primero en la autenticacion
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile()
+        {
+            // Obtener el ID del usuario actualmente autenticado
+            var userId = _userManager.GetUserId(User);
+            var profileModel = await _authService.GetProfileAsync(userId);
+
+            if (profileModel == null)
+            {
+                return NotFound();
+            }
+            return View(profileModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile(UpdateProfileModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // Obtener el ID del usuario actualmente autenticado
+            var userId = _userManager.GetUserId(User);
+            var result = await _authService.UpdateProfileAsync(userId, model);
+
+            if (result.StatusCode == 1)
+            {
+                TempData["msg"] = result.Message;
+                return RedirectToAction(nameof(UpdateProfile));
+            }
+            else
+            {
+                TempData["msg"] = result.Message;
+                return View(model);
+            }
+        }
+
 
         public IActionResult Login()
         {
@@ -123,7 +163,7 @@ namespace Agenda.Controllers
                 Phone = "0983824865",
                 FirstName = "Mateo",
                 LastName = "Eras",
-                DNI = "17563423456",
+                DNI = "1756342345",
                 Password = "Mateo.eras@123"
             };
             model.Role = "admin";

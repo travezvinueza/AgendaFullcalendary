@@ -36,55 +36,29 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nombre*</label>
-                        <input type="text" class="form-control" asp-for="FirstName" />
-                        <span class="text-danger" asp-validation-for="FirstName"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Apellido*</label>
-                        <input type="text" class="form-control" asp-for="LastName" />
-                        <span class="text-danger" asp-validation-for="LastName"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Cedula*</label>
-                        <input type="text" class="form-control" asp-for="DNI" />
-                        <span class="text-danger" asp-validation-for="DNI"></span>
-                    </div>
-
-                    <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" asp-for="Email" />
                         <span class="text-danger" asp-validation-for="Email"></span>
                     </div>
 
                     <div class="form-group">
-                        <label>Telefono*</label>
-                        <input type="text" class="form-control" asp-for="Phone" />
-                        <span class="text-danger" asp-validation-for="Phone"></span>
-                    </div>
-
-                    <div class="form-group">
                         <label>Usuario</label>
                         <input type="text" class="form-control" asp-for="Username" />
                         <span class="text-danger" asp-validation-for="Username"></span>
-
                     </div>
 
                     <div class="form-group">
                         <label>Password (Example.test@123)</label>
                         <input type="password" class="form-control" asp-for="Password" />
                         <span class="text-danger" asp-validation-for="Password"></span>
-
                     </div>
 
                     <div class="form-group">
                         <label>Confirmar Password</label>
                         <input type="password" class="form-control" asp-for="PasswordConfirm" />
                         <span class="text-danger" asp-validation-for="PasswordConfirm"></span>
-
                     </div>
+                    
                     <br>
                     @if (TempData["msg"] != null)
                     {

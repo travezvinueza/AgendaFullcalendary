@@ -21,6 +21,64 @@ namespace Agenda.Service.Impl
 
         }
 
+        //metodo para traer los datos del usuario logueado
+        public async Task<UpdateProfileModel> GetProfileAsync(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return null!;
+            }
+            // Mapear los datos del usuario al modelo de actualización de perfil
+            var profileModel = new UpdateProfileModel
+            {
+                ProfilePicture =user.ProfilePicture,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                DNI = user.DNI,
+                Phone = user.Phone
+                // Otros campos según sea necesario
+            };
+            return profileModel;
+        }
+
+        public async Task<Status> UpdateProfileAsync(string userId, UpdateProfileModel model)
+        {
+            var status = new Status();
+
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                status.StatusCode = 0;
+                status.Message = "Usuario no encontrado";
+                return status;
+            }
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.DNI = model.DNI;
+            user.Phone = model.Phone;
+
+            // Guardar los cambios en la base de datos
+            var result = await userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                status.StatusCode = 1;
+                status.Message = "Perfil actualizado exitosamente";
+            }
+            else
+            {
+                status.StatusCode = 0;
+                status.Message = "Error al actualizar el perfil";
+            }
+            return status;
+        }
+
         //este metodo es para que me traiga la lista de los usuarios
         public List<RegistrationModel> GetAll()
         {
@@ -29,11 +87,12 @@ namespace Agenda.Service.Impl
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                DNI = user.DNI,
                 Email = user.Email!,
+                Phone = user.Phone,
                 Username = user.UserName!,
                 ProfilePicture = user.ProfilePicture,
-                DNI = user.DNI,
-                Phone = user.Phone,
+                
                 Role = userManager.GetRolesAsync(user).Result.FirstOrDefault()!
             }).ToList();
 
@@ -56,12 +115,10 @@ namespace Agenda.Service.Impl
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Username,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
+                
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                DNI = model.DNI,        
-                Phone = model.Phone     
+               
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
@@ -182,5 +239,6 @@ namespace Agenda.Service.Impl
             }
             return status;
         }
+
     }
 }
