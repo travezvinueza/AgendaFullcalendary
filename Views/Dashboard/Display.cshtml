@@ -2,15 +2,20 @@
 @model UpdateProfileModel
 
 
-<div class="text-center">
-    <h2>Actualizar Perfil</h2>
-    <div>
-        <img src="~/Uploads/@Model.ProfilePicture" alt="Profile Picture" style="border-radius: 50%;" />
+<div class="dashboard-container">
+    <div class="header">
+        <center>
+            <h2>Actualizar Perfil</h2>
+            <br>
+            <div>
+               <img src="~/Uploads/@Model.ProfilePicture" alt="Profile Picture" width="100px" height="100px" style="border-radius: 50%;" />
+            </div>
+            <h4>Bienvenido, @User.Identity.Name</h4>
+        </center>
     </div>
-    <h4>Bienvenido, @User.Identity.Name</h4>
 </div>
 
-<form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+<form asp-action="UpdateProfile" method="post" enctype="multipart/form-data" id="updateProfileForm">
 
     <div class="form-group">
         <label asp-for="DNI">Cedula</label>
@@ -36,7 +41,6 @@
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
-
     <div class="form-group">
         <label asp-for="Phone">Teléfono</label>
         <input asp-for="Phone" class="form-control" />
@@ -45,10 +49,33 @@
 
     <br>
 
-    <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+    <button type="button" class="btn btn-primary" id="btnUpdateProfile">Actualizar Perfil</button>
 </form>
 <br>
 
 <div class="calendar-button">
     <a href="@Url.Action("Display", "Calendario")" class="btn btn-primary">Calendario</a>
 </div>
+
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+       document.getElementById('btnUpdateProfile').addEventListener('click', function () {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Se actualizará la información del usuario.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, actualizar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateProfileForm').submit(); // Corregir aquí
+                }
+            });
+        });
+    </script>
+}
+

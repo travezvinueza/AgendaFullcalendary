@@ -4,8 +4,6 @@ namespace Agenda.Service.Abstract
 {
     public interface IUserAuthenticationService
     {
-
-       
         Task<IList<string>> GetRolesAsync(string userId);
         Task<Status> LoginAsync(LoginModel model);
         Task LogoutAsync();
@@ -17,5 +15,9 @@ namespace Agenda.Service.Abstract
         Task<UpdateProfileModel> GetProfileAsync(string userId);
         Task<Status> UpdateProfileAsync(string userId, UpdateProfileModel model);
 
+        //metodos para el admin
+        Status DeleteUser(string username);
+        Task<EditUserModel> GetEditUserModelAsync(string username);
+        Task<Status> UpdateUserAsync(EditUserModel model);
     }
 }

@@ -2,6 +2,7 @@
 using Agenda.Models.Dto;
 using Agenda.Service.Abstract;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 
@@ -12,13 +13,94 @@ namespace Agenda.Service.Impl
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-        public UserAuthenticationService(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+         private readonly DatabaseContext _dbContext; 
+        public UserAuthenticationService(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            DatabaseContext dbContext)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this._dbContext = dbContext;
 
+        }
+        //metodo para obtener el modelo para el boton editar
+       public async Task<EditUserModel> GetEditUserModelAsync(string username)
+        {
+            var user = await userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return null!;
+            }
+
+            var editUserModel = new EditUserModel
+            {
+                ProfilePicture = user.ProfilePicture,
+                Username = user.UserName!,
+                DNI = user.DNI,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email!,
+                Phone = user.Phone
+            };
+            return editUserModel;
+        }
+
+          // Método para actualizar el usuario
+        public async Task<Status> UpdateUserAsync(EditUserModel model)
+        {
+            var user = await userManager.FindByNameAsync(model.Username);
+
+            if (user == null)
+            {
+                return new Status { StatusCode = 0, Message = "Usuario no encontrado" };
+            }
+
+            user.DNI = model.DNI;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.Phone = model.Phone;
+
+            try
+            {
+                await userManager.UpdateAsync(user);
+                return new Status { StatusCode = 1, Message = "Usuario actualizado exitosamente" };
+            }
+            catch (DbUpdateException )
+            {
+                return new Status { StatusCode = 0, Message = "Error al actualizar el usuario" };
+            }
+        }
+
+        //medtodo para el boton eliminar
+         public Status DeleteUser(string username)
+        {
+            var status = new Status();
+            var user = userManager.FindByNameAsync(username).Result;
+            if (user == null)
+            {
+                status.StatusCode = 0;
+                status.Message = "Usuario no encontrado";
+                return status;
+            }
+            var result = userManager.DeleteAsync(user).Result;
+
+            if (result.Succeeded)
+            {
+                status.StatusCode = 1;
+                status.Message = "Usuario eliminado exitosamente";
+            }
+            else
+            {
+                status.StatusCode = 0;
+                status.Message = "Error al eliminar el usuario";
+            }
+
+            return status;
         }
 
         //metodo para traer los datos del usuario logueado
@@ -36,7 +118,7 @@ namespace Agenda.Service.Impl
                 ProfilePicture =user.ProfilePicture,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email,
+                Email = user.Email!,
                 DNI = user.DNI,
                 Phone = user.Phone
                 // Otros campos según sea necesario
@@ -239,6 +321,5 @@ namespace Agenda.Service.Impl
             }
             return status;
         }
-
     }
 }

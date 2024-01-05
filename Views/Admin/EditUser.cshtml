@@ -1,0 +1,58 @@
+@using Agenda.Models.Dto
+@model EditUserModel
+
+<!-- Agrege el enlace a SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="dashboard-container">
+    <div class="header">
+        <center>
+            <h2>Editar Usuario</h2>
+            <br>
+            <div>
+               <img src="~/Uploads/@Model.ProfilePicture" alt="Profile Picture" width="100px" height="100px" style="border-radius: 50%;" />
+            </div>
+        </center>
+    </div>
+</div>
+
+<form asp-action="UpdateUser" method="post" id="updateUserForm">
+    <div class="form-group">
+        <label asp-for="Username">Usuario</label>
+        <input asp-for="Username" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DNI">Cedula</label>
+        <input asp-for="DNI" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName">Nombre</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Apellido</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Correo Electronico</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone">Telefono</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <br>
+
+    <button type="button" class="btn btn-primary" id="btnUpdateUser">Actualizar Usuario</button>
+</form>
+<br>
+<div class="calendar-button">
+    <a href="@Url.Action("Display", "Admin")" class="btn btn-primary">Volver</a>
+</div>
+
+<script src="~/js/script.js"></script>

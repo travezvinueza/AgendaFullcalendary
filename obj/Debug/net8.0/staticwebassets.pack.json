@@ -29,10 +29,6 @@
       "PackagePath": "staticwebassets\\Uploads\\87efe122-2b0b-4665-b9eb-2741b7f6645e.jpeg"
     },
     {
-      "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg",
-      "PackagePath": "staticwebassets\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg"
-    },
-    {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -43,6 +39,10 @@
     {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
     },
     {
       "Id": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\site.js",
