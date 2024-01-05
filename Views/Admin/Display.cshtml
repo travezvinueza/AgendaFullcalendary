@@ -1,5 +1,6 @@
 @{
     string username = User.Identity.Name;
+    var deleteUserUrl = Url.Action("DeleteUser", "Admin");
 }
 @using Agenda.Models.Dto
 @model List<RegistrationModel>

@@ -77,29 +77,38 @@ namespace Agenda.Service.Impl
         }
 
         //medtodo para el boton eliminar
-         public Status DeleteUser(string username)
+        public Status DeleteUser(string username)
         {
             var status = new Status();
             var user = userManager.FindByNameAsync(username).Result;
+
             if (user == null)
             {
                 status.StatusCode = 0;
                 status.Message = "Usuario no encontrado";
                 return status;
             }
-            var result = userManager.DeleteAsync(user).Result;
 
-            if (result.Succeeded)
+            try
             {
-                status.StatusCode = 1;
-                status.Message = "Usuario eliminado exitosamente";
+                var result = userManager.DeleteAsync(user).Result;
+
+                if (result.Succeeded)
+                {
+                    status.StatusCode = 1;
+                    status.Message = "Usuario eliminado exitosamente";
+                }
+                else
+                {
+                    status.StatusCode = 0;
+                    status.Message = "Error al eliminar el usuario: " + string.Join(", ", result.Errors.Select(e => e.Description));
+                }
             }
-            else
+            catch (Exception ex)
             {
                 status.StatusCode = 0;
-                status.Message = "Error al eliminar el usuario";
+                status.Message = "Error inesperado al eliminar el usuario: " + ex.Message;
             }
-
             return status;
         }
 

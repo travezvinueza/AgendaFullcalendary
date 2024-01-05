@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y/h3d7DQExTOBRi5EMH4zfET6mTYOv8tRBVoREUnojs=",
+  "Hash": "rRVv5tjbFt487ZWJhGE98cy41+otn65qo3F5eU4WUvo=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -186,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\pelota.jpg"
+    },
+    {
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\script.js",
+      "SourceId": "Agenda",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
+      "BasePath": "_content/Agenda",
+      "RelativePath": "js/script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\script.js"
     },
     {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\js\\site.js",
@@ -11738,25 +11757,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\87efe122-2b0b-4665-b9eb-2741b7f6645e.jpeg"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\bfc2803a-a60a-4c92-98e2-83afac5dcb60.jpg"
     }
   ]
 }
