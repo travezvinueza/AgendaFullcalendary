@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-XXj2s1izIdI6Ux9QjFU7c5i21aNwpw4UH4qjNCnWo6s4Q8g7VyTt4A4v4kNq2dYz"
         crossorigin="anonymous"></script>
+        
 </head>
 
 <body>
@@ -27,24 +28,29 @@
         <div class="row">
             <div class="col-md-4 mx-auto my-4">
                 <form asp-action="Registration" method="post" enctype="multipart/form-data">
-                    <h3 class="text-center">Registro de Usuario</h3><br>
+                    <h3 class="text-center">Registro de Usuario</h3>
+                    <!-- Vista previa de la imagen -->
+                    <div class="form-group text-center">
+                        <img id="imagenVistaPrevia" class="img-thumbnail align-middle"
+                            style="max-width: 100px; max-height: 150px; border-radius: 50%;" />
+                    </div>
 
                     <div class="form-group">
                         <label>Imagen</label>
                         <input type="file" class="form-control" asp-for="ImageFile" />
                         <span class="text-danger" asp-validation-for="ImageFile"></span>
                     </div>
+                    
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" class="form-control" asp-for="Username" />
+                        <span class="text-danger" asp-validation-for="Username"></span>
+                    </div>
 
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" asp-for="Email" />
                         <span class="text-danger" asp-validation-for="Email"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Usuario</label>
-                        <input type="text" class="form-control" asp-for="Username" />
-                        <span class="text-danger" asp-validation-for="Username"></span>
                     </div>
 
                     <div class="form-group">
@@ -79,6 +85,25 @@
             </div>
         </div>
     </div>
+<script>
+    // Función para mostrar la vista previa de la imagen
+    document.getElementById("ImageFile").addEventListener("change", function() {
+        mostrarVistaPrevia(this);
+    });
+
+    function mostrarVistaPrevia(input) {
+        var fileInput = input.files[0];
+        var imagePreview = document.getElementById("imagenVistaPrevia");
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            console.log('Vista previa de la imagen:', e.target.result);
+            imagePreview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(fileInput);
+    }
+</script>
 
 </body>
 

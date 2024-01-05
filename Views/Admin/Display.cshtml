@@ -48,9 +48,10 @@
                                 <td><img src="~/Uploads/@user.ProfilePicture" style="width: 100px; height: 100px;" alt="Profile Picture"></td>
                                 <td>@user.Role</td>
                                 <td>
-                                    <button class="btn btn-danger" onclick="eliminarUsuario('@user.Username')">Eliminar</button>
+                                    <button class="btn btn-danger eliminar-usuario" data-username="@user.Username" data-url="@deleteUserUrl">Eliminar</button>
                                     <a class="btn btn-primary" href="@Url.Action("EditUser", new { username = user.Username })">Editar</a>
                                 </td>
+
                             </tr>
                         }
                     </tbody>
@@ -64,5 +65,3 @@
     </div>
 </div>
 <script src="~/js/script.js"></script>
-
-

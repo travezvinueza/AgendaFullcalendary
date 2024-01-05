@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vDmg1ChJtRMRry/tznV5+0gP2nQve0N1/d9kbXFA3dQ=",
+  "Hash": "Z/QVD/sRpue6TiYW42rLVg5o9sRtOKk7V0J2yJhawPw=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -11721,6 +11721,25 @@
       "OriginalItemSpec": "wwwroot\\superagent\\superagent.min.js.map"
     },
     {
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\2f9326f9-6e6b-4802-9389-df07b5bf4838.jpg",
+      "SourceId": "Agenda",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
+      "BasePath": "_content/Agenda",
+      "RelativePath": "Uploads/2f9326f9-6e6b-4802-9389-df07b5bf4838.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\2f9326f9-6e6b-4802-9389-df07b5bf4838.jpg"
+    },
+    {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg",
       "SourceId": "Agenda",
       "SourceType": "Discovered",
@@ -11757,6 +11776,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\87efe122-2b0b-4665-b9eb-2741b7f6645e.jpeg"
+    },
+    {
+      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\f6011713-4c50-4280-a61c-df50130c622e.png",
+      "SourceId": "Agenda",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
+      "BasePath": "_content/Agenda",
+      "RelativePath": "Uploads/f6011713-4c50-4280-a61c-df50130c622e.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\f6011713-4c50-4280-a61c-df50130c622e.png"
     }
   ]
 }

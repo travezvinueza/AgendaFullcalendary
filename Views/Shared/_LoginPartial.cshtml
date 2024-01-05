@@ -5,7 +5,7 @@
     
 
 @{
-    string FirstName = User.Identity?.Name;
+    string FirstName = User.Identity?.Name!;
     bool isAuthenticated = SignInManager.IsSignedIn(User);
 }
 

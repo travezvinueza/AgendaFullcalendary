@@ -62,9 +62,16 @@ namespace Agenda.Controllers
         }
 
 
+        [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            var loginModel = new LoginModel
+            {
+                // Recuperar los valores almacenados temporalmente
+                Username = TempData["RegisteredUsername"]?.ToString()!,
+                Password = TempData["RegisteredPassword"]?.ToString()!
+            };
+            return View(loginModel);
         }
 
         [HttpPost]
@@ -133,6 +140,9 @@ namespace Agenda.Controllers
 
                 if (result.StatusCode == 1)
                 {
+                    TempData["RegisteredUsername"] = model.Username;
+                    TempData["RegisteredPassword"] = model.Password;
+
                     return RedirectToAction(nameof(Login));
                 }
             }
