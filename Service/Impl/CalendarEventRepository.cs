@@ -1,4 +1,5 @@
 using Agenda.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CalendarEvents.Models
@@ -14,7 +15,7 @@ namespace CalendarEvents.Models
 
         public IEnumerable<CalendarEvent> GetAll()
         {
-            return _context.CalendarEvents.ToList();
+            return _context.CalendarEvents.Include(e => e.Lawyer).ToList();
         }
 
         public CalendarEvent GetById(int id)
@@ -24,11 +25,24 @@ namespace CalendarEvents.Models
 
         public void Add(CalendarEvent calendarEvent)
         {
-            calendarEvent.DateCreated = DateTime.Now;
-            calendarEvent.DateModified = DateTime.Now;
-            _context.CalendarEvents.Add(calendarEvent);
-            _context.SaveChanges();
+            try
+            {
+                calendarEvent.DateCreated = DateTime.Now;
+                calendarEvent.DateModified = DateTime.Now;
+                _context.CalendarEvents.Add(calendarEvent);
+                _context.SaveChanges();
+                Console.WriteLine("Evento agregado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al agregar evento: {ex.Message}");
+                // Puedes lanzar la excepción nuevamente si lo deseas
+                throw;
+            }
         }
+
+        // Similar para Update y Delete
+
 
         public void Update(CalendarEvent calendarEvent)
         {
@@ -49,10 +63,11 @@ namespace CalendarEvents.Models
 
         }
 
-        public CalendarEvent GetByIdAndLawyerId(int id, int lawyerId)
+        public CalendarEvent GetByIdAndLawyerId(int id, string lawyerId)
         {
             // Aquí debes implementar la lógica para recuperar un evento por Id y LawyerId desde tu base de datos
             return _context.CalendarEvents.FirstOrDefault(e => e.Id == id && e.LawyerId == lawyerId);
         }
+
     }
 }

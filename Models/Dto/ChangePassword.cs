@@ -2,7 +2,6 @@
 
 namespace Agenda.Models.Dto
 {
-
     public class ChangePassword
     {
         [Required]

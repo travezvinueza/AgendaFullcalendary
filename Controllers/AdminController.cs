@@ -25,7 +25,7 @@ namespace Agenda.Controllers
          [HttpPost]
         public IActionResult DeleteUser(string username)
         {
-            // Eliminar el usuario y redirigir a la acción Index
+            // Eliminar el usuario y redirigir a la acción Display
             var status = _userService.DeleteUser(username);
 
             if (status.StatusCode == 1)

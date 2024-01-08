@@ -42,6 +42,5 @@ namespace Agenda.Models.Dto
             PasswordConfirm = string.Empty;
             Role = string.Empty;
         }
-
     }
 }

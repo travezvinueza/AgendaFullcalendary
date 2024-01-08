@@ -1,6 +1,7 @@
 using Agenda.Models.Domain;
 using CalendarEvents.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agenda.Controllers
@@ -8,12 +9,26 @@ namespace Agenda.Controllers
     [Authorize]
     public class CalendarioController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly DatabaseContext _dbContext;
         private readonly ICalendarEventRepository _eventRepository;
-        public CalendarioController(ICalendarEventRepository eventRepository, DatabaseContext dbContext)
+        public CalendarioController(
+            UserManager<ApplicationUser> userManager,
+            ICalendarEventRepository eventRepository,
+            DatabaseContext dbContext)
+        
         {
+            _userManager = userManager;
             _eventRepository = eventRepository;
             _dbContext = dbContext;
+        }
+
+        //mostrar sweet alert
+        [AllowAnonymous]
+        public new IActionResult Unauthorized()
+        {
+            ViewBag.Message = TempData["UnauthorizedMessage"]?.ToString();
+            return View();
         }
 
         public IActionResult Display()
@@ -25,12 +40,17 @@ namespace Agenda.Controllers
         public IActionResult GetEvents()
         {
             var events = _eventRepository.GetAll();
+
+            var emailDelPrimerEvento = events.FirstOrDefault()?.Lawyer?.Email;
+
+            Console.WriteLine($"Email del primer evento: {emailDelPrimerEvento}");
+
             return Json(events);
         }
 
         // Acción para mostrar el formulario de edición
         [HttpGet]
-        public IActionResult Edit(int lawyerId, int id)
+        public async Task<IActionResult> EditAsync(string lawyerId, int id)
         {
             var eventToEdit = _eventRepository.GetByIdAndLawyerId(id, lawyerId);
 
@@ -38,34 +58,58 @@ namespace Agenda.Controllers
             {
                 return NotFound();
             }
+            // Verifica si el usuario actual es el propietario del evento
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (eventToEdit.LawyerId != currentUser!.Id)
+            {
+                // Usuario no autorizado
+                TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                return RedirectToAction("Unauthorized");
+            }
 
             return View(eventToEdit);
         }
 
         // Acción para procesar el formulario de edición
         [HttpPost]
-        public IActionResult Edit(CalendarEvent editedEvent)
+        public async Task<IActionResult> EditAsync(CalendarEvent editedEvent)
         {
             if (ModelState.IsValid)
             {
+                // Verifica si el usuario actual es el propietario del evento
+                var currentUser = await _userManager.GetUserAsync(User);
+                if (editedEvent.LawyerId != currentUser!.Id)
+                {
+                    // Usuario no autorizado
+                    TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                    return RedirectToAction("Unauthorized");
+                }
+
                 _eventRepository.Update(editedEvent);
 
                 return RedirectToAction("Display");
             }
-
             return View(editedEvent);
         }
 
         // Metodo para que me traiga los detalles del evento
         // y asi poder eliminarlo con el siguiente metodo
         [HttpGet]
-        public IActionResult Details(int lawyerId, int id)
+        public async Task<IActionResult> DetailsAsync(string lawyerId, int id)
         {
             var eventDetailsModel = _eventRepository.GetByIdAndLawyerId(id, lawyerId);
 
             if (eventDetailsModel == null)
             {
-                return NotFound();
+                TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                return RedirectToAction("Unauthorized");
+            }
+            // Verifica si el usuario actual es el propietario del evento
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (eventDetailsModel.LawyerId != currentUser!.Id)
+            {
+                TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                return RedirectToAction("Unauthorized");
             }
 
             return View(eventDetailsModel);
@@ -73,19 +117,28 @@ namespace Agenda.Controllers
 
         // Metodo para eliminar
         [HttpPost]
-        public IActionResult Delete(int lawyerId, int id)
+        [Authorize(Roles = "admin")] 
+        public async Task<IActionResult> DeleteAsync(string lawyerId, int id)
         {
-
             var eventToDelete = _eventRepository.GetByIdAndLawyerId(id, lawyerId);
 
             if (eventToDelete == null)
             {
-
-                return NotFound();
+                TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                return RedirectToAction("Unauthorized");
             }
-
+            var currentUser = await _userManager.GetUserAsync(User);
+            // Verifica si el usuario actual es el administrador
+            if (!await _userManager.IsInRoleAsync(currentUser!, "Admin"))
+            {
+                // Si no es administrador, verifica que el evento a eliminar sea de su propiedad
+                if (eventToDelete.LawyerId != currentUser!.Id)
+                {
+                    TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                    return RedirectToAction("Unauthorized");
+                }
+            }
             _eventRepository.Delete(eventToDelete);
-
             return RedirectToAction("Display");
         }
 
@@ -98,38 +151,49 @@ namespace Agenda.Controllers
             {
 
             };
-
             return View(data);
         }
 
         // Metodo para crear un evento
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(CalendarEvent calendarEvent)
+        public async Task<IActionResult> CreateAsync(CalendarEvent calendarEvent)
         {
+            Console.WriteLine("Entró al método Create");
             if (ModelState.IsValid)
             {
-                using (var dbContext = _dbContext)
+                try
                 {
-                    var nuevoEvento = new CalendarEvent
+                    var currentUser = await _userManager.GetUserAsync(User);
+                    using (var dbContext = _dbContext)
                     {
-                        NameLawyer = calendarEvent.NameLawyer,
-                        Title = calendarEvent.Title,
-                        Start = calendarEvent.Start,
-                        End = calendarEvent.End,
-                        Description = calendarEvent.Description,
-                        AllDay = calendarEvent.AllDay,
-                        DateCreated = DateTime.Now,
-                        DateModified = DateTime.Now
-                        // ... otras propiedades según tu modelo
-                    };
+                        var nuevoEvento = new CalendarEvent
+                        {
+                            LawyerId = currentUser!.Id,
+                            NameLawyer = currentUser!.UserName!,
+                            Title = calendarEvent.Title,
+                            Start = calendarEvent.Start,
+                            End = calendarEvent.End,
+                            Description = calendarEvent.Description,
+                            AllDay = calendarEvent.AllDay,
+                            DateCreated = DateTime.Now,
+                            DateModified = DateTime.Now
+                        };
 
-                    dbContext.CalendarEvents.Add(nuevoEvento);
-                    dbContext.SaveChanges();
+                        dbContext.CalendarEvents.Add(nuevoEvento);
+                        await dbContext.SaveChangesAsync();  
 
-                    return RedirectToAction("Display");
+                        return RedirectToAction("Display");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al crear el evento: {ex.Message}");
+                    Console.WriteLine(ex.StackTrace);
+                    ModelState.AddModelError(string.Empty, $"Error al crear el evento: {ex.Message}");
+                    return View(calendarEvent);
                 }
             }
-
             return View(calendarEvent);
         }
     }

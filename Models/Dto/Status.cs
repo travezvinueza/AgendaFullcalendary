@@ -1,6 +1,5 @@
 ﻿namespace Agenda.Models.Dto
 {
-
     public class Status
     {
         public int StatusCode { get; set; }

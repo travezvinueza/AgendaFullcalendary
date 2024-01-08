@@ -9,6 +9,6 @@ namespace CalendarEvents.Models
         void Update(CalendarEvent calendarEvent);
         void Delete(CalendarEvent calendarEvent);
 
-         CalendarEvent GetByIdAndLawyerId(int id, int lawyerId);
+         CalendarEvent GetByIdAndLawyerId(int id, string lawyerId);
     }
 }

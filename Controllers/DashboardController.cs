@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Agenda.Models.Domain;
 using Agenda.Models.Dto;
 using Agenda.Service.Abstract;
 using System.Security.Claims;
@@ -23,7 +21,7 @@ namespace Agenda.Controllers
             // Obtener el ID del usuario actual
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var profileModel = await _authService.GetProfileAsync(userId);
+            var profileModel = await _authService.GetProfileAsync(userId!);
 
             if (profileModel == null)
             {
@@ -38,7 +36,7 @@ namespace Agenda.Controllers
             // Obtener el ID del usuario actual 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var status = await _authService.UpdateProfileAsync(userId, model);
+            var status = await _authService.UpdateProfileAsync(userId!, model);
 
             if (status.StatusCode == 1)
             {

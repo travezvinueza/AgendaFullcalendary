@@ -5,7 +5,9 @@
 }
 
 <div class="alert alert-primary" role="alert">
-   <center><h2>Crear nuevo evento</h2></center> 
+    <center>
+        <h2>Crear nuevo evento</h2>
+    </center>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -16,13 +18,14 @@
                     <div class="form-group">
                         <label asp-for="NameLawyer">Nombre Cancha</label>
                         <select asp-for="NameLawyer"
-                            asp-items="@(new SelectList(new List<string> { "Cancha Quito Norte", "La Carolina", "Cancha Max Quito", "Estadio Olimpico" }))"
-                            class="form-control">
+                            asp-items="@(new SelectList(new List<string> { "Cancha Quito Norte", "La Carolina", "pedro", "Estadio Olimpico" }))"
+                            class="form-control" id="NameLawyer">
                             <option value="">Seleccione una cancha</option>
                         </select>
-
+                        <span asp-validation-for="NameLawyer" class="text-danger"></span>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Title" class="control-label">Nombre</label>
@@ -37,7 +40,7 @@
                         <span asp-validation-for="Start" class="text-danger"></span>
                     </div>
                 </div>
-              <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <label asp-for="End" class="control-label">Fecha de Fin</label>
                         <input asp-for="End" class="form-control" type="datetime-local" />
@@ -50,13 +53,13 @@
                 <div class="col-md-6 mb-4">
                     <div class="form-group">
                         <label asp-for="Description" class="control-label">Descripcion</label>
-                        <textarea asp-for="Description" type="text" class="form-control" rows="3" id="MessageInputField"
+                        <textarea asp-for="Description" class="form-control" rows="3" id="Description"
                             autofocus></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                 </div>
 
-             <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3">
                     <div class="form-group align-middle">
                         <input class="form-check-input" asp-for="AllDay" />
                         <label class="form-check-label" asp-for="AllDay">Todo el día</label>

@@ -12,5 +12,15 @@ namespace Agenda.Models.Domain
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configuración de la relación entre ApplicationUser y CalendarEvent
+            modelBuilder.Entity<CalendarEvent>()
+                .HasOne(c => c.Lawyer)
+                .WithMany(u => u.CalendarEvents)
+                .HasForeignKey(c => c.LawyerId);
+        }
     }
 }

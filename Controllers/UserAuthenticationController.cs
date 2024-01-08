@@ -27,7 +27,7 @@ namespace Agenda.Controllers
         {
             // Obtener el ID del usuario actualmente autenticado
             var userId = _userManager.GetUserId(User);
-            var profileModel = await _authService.GetProfileAsync(userId);
+            var profileModel = await _authService.GetProfileAsync(userId!);
 
             if (profileModel == null)
             {
@@ -47,7 +47,7 @@ namespace Agenda.Controllers
 
             // Obtener el ID del usuario actualmente autenticado
             var userId = _userManager.GetUserId(User);
-            var result = await _authService.UpdateProfileAsync(userId, model);
+            var result = await _authService.UpdateProfileAsync(userId!, model);
 
             if (result.StatusCode == 1)
             {

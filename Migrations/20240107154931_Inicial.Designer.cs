@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240103151321_Migracion")]
-    partial class Migracion
+    [Migration("20240107154931_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,8 +137,9 @@ namespace Agenda.Migrations
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LawyerId")
-                        .HasColumnType("int");
+                    b.Property<string>("LawyerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("NameLawyer")
                         .IsRequired()
@@ -152,6 +153,8 @@ namespace Agenda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LawyerId");
 
                     b.ToTable("CalendarEvents");
                 });
@@ -289,6 +292,17 @@ namespace Agenda.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CalendarEvents.Models.CalendarEvent", b =>
+                {
+                    b.HasOne("Agenda.Models.Domain.ApplicationUser", "Lawyer")
+                        .WithMany("CalendarEvents")
+                        .HasForeignKey("LawyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lawyer");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -338,6 +352,11 @@ namespace Agenda.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Agenda.Models.Domain.ApplicationUser", b =>
+                {
+                    b.Navigation("CalendarEvents");
                 });
 #pragma warning restore 612, 618
         }
