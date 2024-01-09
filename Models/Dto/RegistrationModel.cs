@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CalendarEvents.Models;
 
 namespace Agenda.Models.Dto
 {
@@ -29,6 +30,8 @@ namespace Agenda.Models.Dto
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
         public string Role { get; set; }
+
+        public List<CalendarEvent>? Events { get; set; }
 
         public RegistrationModel()
         {

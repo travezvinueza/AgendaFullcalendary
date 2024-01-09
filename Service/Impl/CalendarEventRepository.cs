@@ -42,8 +42,6 @@ namespace CalendarEvents.Models
         }
 
         // Similar para Update y Delete
-
-
         public void Update(CalendarEvent calendarEvent)
         {
             calendarEvent.DateModified = DateTime.Now;

@@ -13,7 +13,7 @@ namespace Agenda.Service.Impl
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-         private readonly DatabaseContext _dbContext; 
+        private readonly DatabaseContext _dbContext;
         public UserAuthenticationService(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -27,7 +27,7 @@ namespace Agenda.Service.Impl
 
         }
         //metodo para obtener el modelo para el boton editar
-       public async Task<EditUserModel> GetEditUserModelAsync(string username)
+        public async Task<EditUserModel> GetEditUserModelAsync(string username)
         {
             var user = await userManager.FindByNameAsync(username);
 
@@ -49,7 +49,7 @@ namespace Agenda.Service.Impl
             return editUserModel;
         }
 
-          // Método para actualizar el usuario
+        // Método para actualizar el usuario
         public async Task<Status> UpdateUserAsync(EditUserModel model)
         {
             var user = await userManager.FindByNameAsync(model.Username);
@@ -70,7 +70,7 @@ namespace Agenda.Service.Impl
                 await userManager.UpdateAsync(user);
                 return new Status { StatusCode = 1, Message = "Usuario actualizado exitosamente" };
             }
-            catch (DbUpdateException )
+            catch (DbUpdateException)
             {
                 return new Status { StatusCode = 0, Message = "Error al actualizar el usuario" };
             }
@@ -124,7 +124,7 @@ namespace Agenda.Service.Impl
             // Mapear los datos del usuario al modelo de actualización de perfil
             var profileModel = new UpdateProfileModel
             {
-                ProfilePicture =user.ProfilePicture,
+                ProfilePicture = user.ProfilePicture,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email!,
@@ -173,22 +173,30 @@ namespace Agenda.Service.Impl
         //este metodo es para que me traiga la lista de los usuarios
         public List<RegistrationModel> GetAll()
         {
-            var allUsers = userManager.Users.ToList();
-            var registrationModels = allUsers.Select(user => new RegistrationModel
+            var allUsers = userManager.Users.Include(u => u.CalendarEvents).ToList();
+            var registrationModels = new List<RegistrationModel>();
+
+            foreach (var user in allUsers)
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                DNI = user.DNI,
-                Email = user.Email!,
-                Phone = user.Phone,
-                Username = user.UserName!,
-                ProfilePicture = user.ProfilePicture,
-                
-                Role = userManager.GetRolesAsync(user).Result.FirstOrDefault()!
-            }).ToList();
+                var registrationModel = new RegistrationModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    DNI = user.DNI,
+                    Email = user.Email!,
+                    Phone = user.Phone,
+                    Username = user.UserName!,
+                    ProfilePicture = user.ProfilePicture,
+                    Role = userManager.GetRolesAsync(user).Result.FirstOrDefault()!,
+                    Events = user.CalendarEvents.ToList()
+                };
+
+                registrationModels.Add(registrationModel);
+            }
 
             return registrationModels;
         }
+
 
         public async Task<Status> RegisterAsync(RegistrationModel model)
         {
@@ -206,10 +214,10 @@ namespace Agenda.Service.Impl
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Username,
-                
+
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-               
+
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

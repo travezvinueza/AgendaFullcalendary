@@ -28,7 +28,7 @@
                     <button id="btnEdit" class="btn btn-info btn-sm pull-right" style="margin-right:5px;">
                         <i class='fas fa-pencil'></i> Editar
                     </button>
-                </div><br /><br />
+                </div><br>
                 <p id="pDetails"></p>
             </div>
         </div>
@@ -70,28 +70,40 @@
                     var exteventObj = info.event.extendedProps;
 
                     console.log(eventObj.title);
+                    // Agrega la propiedad Email, telefono e imagen del objeto extendido
+                    exteventObj.lawyerEmail = exteventObj.lawyerEmail || eventObj.extendedProps.lawyerEmail;
+                    exteventObj.phone = exteventObj.phone || eventObj.extendedProps.phone;
+                    exteventObj.profilePicture = exteventObj.profilePicture || eventObj.extendedProps.profilePicture;
+
                     $('#form-modal #eventTitle').text(eventObj.title);
                     var $description = $('<div/ class="alert alert-secondary" role="alert" style="margin-top:3px">');
+
                     $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Cancha:</b> ' + exteventObj.nameLawyer));
                     $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Inicio:</b> ' + eventObj.start));
                     if (eventObj.end != null) {
                         $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Fin:</b> ' + eventObj.end));
                     }
                     $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Descripcion:</b> ' + exteventObj.description));
+
+                    // Muestra el correo electrónico, teléfono y la imagen
+                    $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Email:</b> ' + exteventObj.lawyerEmail));
+                    $description.append($('<p/ class="alert alert-primary" role="alert">').html('<b>Teléfono:</b> ' + exteventObj.phone));
+                    $description.append($('<div style="text-align: center;">').append($('<img src="/Uploads/' + exteventObj.profilePicture + '" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" alt="Profile Picture">'))
+                    );
+
                     $('#form-modal #pDetails').empty().html($description);
 
                     $('#form-modal').modal('show');
 
                     $('#btnEdit').click(function () {
-
                         window.location = '@Url.Action("Edit", "Calendario")' + '?lawyerId=' + exteventObj.lawyerId + '&id=' + eventObj.id + '';
                     });
 
                     $('#btnDelete').click(function () {
-
                         window.location = '@Url.Action("Details", "Calendario")' + '?lawyerId=' + exteventObj.lawyerId + '&id=' + eventObj.id + '';
                     });
                 },
+
 
                 dateClick: function (info, jsEvent, view) {
                     let m = moment(info.date, calendar);
@@ -149,6 +161,7 @@
                         nameLawyer: 'info.event.extendedProps.nameLawyer',
                         id: 'info.event.extendedProps.Id',
                         lawyerId: 'info.event.extendedProps.lawyerId',
+                        profilePicture: 'info.event.extendedProps.profilePicture', 
                     },
 
                     failure: function () {
@@ -174,7 +187,7 @@
 
                     '<div class="modal-body">' +
                     '<p class="alert alert-primary" role="alert">' + question + '</p>' +
-              '<img src="/images/futbol.jpg" alt="Descripción de la imagen" style="width: 100%; height: auto;">' +
+                    '<img src="/images/futbol.jpg" alt="Descripción de la imagen" style="width: 100%; height: auto;">' +
                     '</div>' +
                     '<div class="modal-footer justify-content-center">' +
                     //'<button type="button" class="btn btn-secondary" aria-hidden="true" data-dismiss="modal">' + cancelButtonTxt + '</button>' +

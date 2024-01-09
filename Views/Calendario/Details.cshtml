@@ -4,11 +4,11 @@
     ViewData["Title"] = "Detalles del Evento";
 }
 
-
-
-<div class="alert alert-danger" role="alert">
-  <center><h2>¿Realmente quieres eliminar este evento?</h2></center>  
+<div class="alert alert-danger d-flex align-items-center" style="justify-content: space-between; padding-right: 20px;">
+    <h2 class="mr-7">¿Realmente quieres eliminar este evento? @($"{Model.Lawyer?.FirstName} {Model.Lawyer?.LastName}")</h2> 
+    <img src="/Uploads/@(Model.Lawyer?.ProfilePicture)" style="width: 50px; height: 50px; border-radius: 50%;" alt="Profile Picture" />
 </div>
+
 
 <div>
     <dl class="row">
@@ -25,6 +25,13 @@
         </dt>
         <dd class="col-sm-10">
             @Model.Title
+        </dd>
+
+        <dt class="col-sm-2">
+            <label for="Email">Email</label>
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Lawyer?.Email)
         </dd>
 
         <dt class="col-sm-2">
@@ -53,6 +60,13 @@
         </dt>
         <dd class="col-sm-10">
             @Model.Color
+        </dd>
+
+        <dt class="col-sm-2">
+            <label for="Phone">Telefono</label>
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Lawyer?.Phone)
         </dd>
     </dl>
     <div>

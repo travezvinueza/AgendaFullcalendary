@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gCzw3SxafVLahBw/Yp08jsQbTBhA0DgVTFq2MIaHWtQ=",
+  "Hash": "vDmg1ChJtRMRry/tznV5+0gP2nQve0N1/d9kbXFA3dQ=",
   "Source": "Agenda",
   "BasePath": "_content/Agenda",
   "Mode": "Default",
@@ -11738,25 +11738,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\39110ec3-87b5-4f5f-b024-dabd58352f00.jpeg"
-    },
-    {
-      "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\62fca5a4-71b2-42c3-853a-406410a87369.jpeg",
-      "SourceId": "Agenda",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\",
-      "BasePath": "_content/Agenda",
-      "RelativePath": "Uploads/62fca5a4-71b2-42c3-853a-406410a87369.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\62fca5a4-71b2-42c3-853a-406410a87369.jpeg"
     },
     {
       "Identity": "C:\\PROYECTOS\\DOTNET\\Agenda\\wwwroot\\Uploads\\87efe122-2b0b-4665-b9eb-2741b7f6645e.jpeg",

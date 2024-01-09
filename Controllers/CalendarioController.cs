@@ -16,7 +16,7 @@ namespace Agenda.Controllers
             UserManager<ApplicationUser> userManager,
             ICalendarEventRepository eventRepository,
             DatabaseContext dbContext)
-        
+
         {
             _userManager = userManager;
             _eventRepository = eventRepository;
@@ -41,11 +41,26 @@ namespace Agenda.Controllers
         {
             var events = _eventRepository.GetAll();
 
-            var emailDelPrimerEvento = events.FirstOrDefault()?.Lawyer?.Email;
+            // Mapear los eventos a un formato que incluya datos del usuario
+            var eventsWithLawyerEmail = events.Select(e => new
+            {
+                id = e.Id,
+                title = $"{e.Title} - {e.Lawyer?.Email}",
+                description = e.Description,
+                start = e.Start,
+                end = e.End,
+                color = e.Color,
+                allDay = e.AllDay,
+                lawyerId = e.LawyerId,
+                nameLawyer = e.NameLawyer,
+                lawyerEmail = e.Lawyer?.Email,
+                phone = e.Lawyer?.Phone,
+                profilePicture = e.Lawyer?.ProfilePicture,
 
-            Console.WriteLine($"Email del primer evento: {emailDelPrimerEvento}");
 
-            return Json(events);
+            });
+
+            return Json(eventsWithLawyerEmail);
         }
 
         // Acción para mostrar el formulario de edición
@@ -117,9 +132,10 @@ namespace Agenda.Controllers
 
         // Metodo para eliminar
         [HttpPost]
-        [Authorize(Roles = "admin")] 
+        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> DeleteAsync(string lawyerId, int id)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             var eventToDelete = _eventRepository.GetByIdAndLawyerId(id, lawyerId);
 
             if (eventToDelete == null)
@@ -127,19 +143,17 @@ namespace Agenda.Controllers
                 TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
                 return RedirectToAction("Unauthorized");
             }
-            var currentUser = await _userManager.GetUserAsync(User);
-            // Verifica si el usuario actual es el administrador
-            if (!await _userManager.IsInRoleAsync(currentUser!, "Admin"))
+
+            if (await _userManager.IsInRoleAsync(currentUser!, "Admin") || eventToDelete.LawyerId == currentUser!.Id)
             {
-                // Si no es administrador, verifica que el evento a eliminar sea de su propiedad
-                if (eventToDelete.LawyerId != currentUser!.Id)
-                {
-                    TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
-                    return RedirectToAction("Unauthorized");
-                }
+                _eventRepository.Delete(eventToDelete);
+                return RedirectToAction("Display");
             }
-            _eventRepository.Delete(eventToDelete);
-            return RedirectToAction("Display");
+            else
+            {
+                TempData["UnauthorizedMessage"] = "No estás autorizado para ver este evento.";
+                return RedirectToAction("Unauthorized");
+            }
         }
 
         // Metodo importante no borrar
@@ -181,7 +195,7 @@ namespace Agenda.Controllers
                         };
 
                         dbContext.CalendarEvents.Add(nuevoEvento);
-                        await dbContext.SaveChangesAsync();  
+                        await dbContext.SaveChangesAsync();
 
                         return RedirectToAction("Display");
                     }

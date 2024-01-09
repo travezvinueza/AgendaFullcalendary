@@ -182,7 +182,6 @@ namespace Agenda.Controllers
             return Ok(result);
         }
 
-
         [Authorize]
         public IActionResult ChangePassword()
         {
